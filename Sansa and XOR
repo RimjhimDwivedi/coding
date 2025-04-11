@@ -1,0 +1,17 @@
+def sansaXor(arr):
+    n = len(arr)
+    if n % 2 == 0:
+        return 0  # Even-length arrays always result in 0
+    else:
+        result = 0
+        for i in range(0, n, 2):  # Only odd-count contributing indices
+            result ^= arr[i]
+        return result
+
+# Reading input and output
+if __name__ == "__main__":
+    T = int(input())
+    for _ in range(T):
+        n = int(input())
+        arr = list(map(int, input().split()))
+        print(sansaXor(arr))
