@@ -1,0 +1,30 @@
+from collections import defaultdict
+
+def count_subsequences_divisible_by_k(n, k, arr):
+    prefix_sum = 0
+    mod_count = defaultdict(int)
+    mod_count[0] = 1  # base case: prefix sum of 0 has one occurrence
+    count = 0
+
+    for num in arr:
+        prefix_sum += num
+        mod = prefix_sum % k
+        # Ensure mod is non-negative
+        mod = (mod + k) % k
+        count += mod_count[mod]
+        mod_count[mod] += 1
+
+    return count
+
+# Read input
+T = int(input())
+results = []
+for _ in range(T):
+    n, k = map(int, input().split())
+    arr = list(map(int, input().split()))
+    result = count_subsequences_divisible_by_k(n, k, arr)
+    results.append(result)
+
+# Print output
+for res in results:
+    print(res)
